@@ -1,0 +1,20 @@
+name: CD GITOPS
+
+on:
+  push:
+    branches:
+      - "main"
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: build and push image to dockerHub
+        uses: docker/build-push-action@v1.1.0
+        with:
+          username: ${{ sicrets.DOCKER_USERNAME }}
+          password: ${{ sicrets.DOCKER_PASSWORD }}
+          repository: ${{ sicrets.DOCKER_USERNAME }}/gitopsfc
+          tags: ${{ github.sha }}, latest
