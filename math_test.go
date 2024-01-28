@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func TestSoma(t *testing.T) {
-	total := Soma(15, 15)
+	total := soma(15, 15)
 	valor_esperado := 30
 
 	if total != valor_esperado {
